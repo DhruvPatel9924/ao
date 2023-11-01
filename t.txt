@@ -1,0 +1,89 @@
+4
+Write a program which contains three predicates: male, female, parent. Make rules for following family
+relations: father, mother, grandfather, grandmother, brother, sister, uncle, aunt, nephew and niece, cousin.
+Program:
+male(john). male(bob). male(jim). female(ann). female(sue). female(liz).
+parent(john, bob). parent(ann, bob). parent(bob, jim). parent(sue, jim).
+father(X, Y) :- male(X), parent(X, Y).
+mother(X, Y) :- female(X), parent(X, Y).
+grandfather(X, Y) :- male(X), parent(X, Z), parent(Z, Y).
+grandmother(X, Y) :- female(X), parent(X, Z), parent(Z, Y).
+brother(X, Y) :- male(X), parent(Z, X), parent(Z, Y), X \= Y.
+sister(X, Y) :- female(X), parent(Z, X), parent(Z, Y), X \= Y.
+uncle(X, Y) :- male(X), brother(X, Z), parent(Z, Y).
+aunt(X, Y) :- female(X), sister(X, Z), parent(Z, Y).
+nephew(X, Y) :- male(X), (uncle(Y, X) ; aunt(Y, X)).
+niece(X, Y) :- female(X), (uncle(Y, X) ; aunt(Y, X)).
+cousin(X,Y):-parent(A,X),parent(B,Y),(brother(A,B);sister(A,B)),X\=Y.
+
+
+factorial
+AIM: Write a program to display Factorial series in prolog
+PROGRAM:
+factorial(0, 1).
+factorial(N, Result) :- N > 0,
+N1 is N - 1,
+factorial(N1, R1),
+Result is N * R1.
+
+
+fibbo
+fibonacci(0, 0). fibonacci(1, 1).
+fibonacci(N, Result) :- N > 1,
+N1 is N - 1, N2 is N - 2,
+fibonacci(N1, Result1),
+fibonacci(N2, Result2), Result is Result1 + Result2.
+display_fibonacci(N) :- display_fibonacci(N, 0).
+display_fibonacci(N, N) :- write(N), nl.
+display_fibonacci(N, Counter) :- Counter < N, write(Counter), nl, NextCounter is Counter + 1,
+display_fibonacci(N,NextCounter).
+
+
+phonenum
+Aim: -
+Write a program in prolog to implement phone list which stores name, phone number and birthdays
+of friends and family members. Write a query to get a list of people whose birthdays are in the
+current month.
+Program: -
+phone_book(name(Dhurv,Garala), '1234567890',birth(june,14,04),add(jamnagar)).
+phone_book(name(aryan,parmar), '0987654321',birth(june,19,01),add(jamnagar)).
+phone_book(name(smit,parmar), '112233445566' ,birth(sept,14,98),add(jamnagar)).
+phone_book(name(keval,hadiyal), '665544332211',birth(june,19,04),add(surendranagar)).
+phone_book(name(ravindra,jadeja), '11111111111',birth(july,20,23),add(jamnagar)).
+testing(X):- phone_book(name(X,_),_,birth(june,_,04),add(_)).
+
+
+
+
+Program: -
+c_to_f(C,F):-F is C*9/5+32.
+freezing(F):-F=<32.
+
+
+
+dog(fido).
+cat(felix).
+animal(X):-dog(X).
+
+
+
+5.1 :-Print member of a list.
+PROGRAM:
+print_members([]).
+print_members([X | Rest]) :-
+write(X), nl,
+print_members(Rest).
+?-read(list)
+
+5.2 :-Write a list.
+PROGRAM:
+write_list([]).
+write_list([X]) :-
+write(X).
+write_list([X | Rest]) :-
+write(X),
+write(', '),
+write_list(Rest).
+?-write_list([1,2]),nl.
+
+
